@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,5 +40,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="/ng-files/dist/inline.bundle.js"></script>
+    <script type="text/javascript" src="/ng-files/dist/polyfills.bundle.js"></script>
+    <script type="text/javascript" src="/ng-files/dist/styles.bundle.js"></script>
+    <script type="text/javascript" src="/ng-files/dist/vendor.bundle.js"></script>
+    <script type="text/javascript" src="/ng-files/dist/main.bundle.js"></script>
 </body>
 </html>

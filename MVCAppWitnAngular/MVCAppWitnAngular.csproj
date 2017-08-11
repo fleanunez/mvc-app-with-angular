@@ -136,6 +136,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ng-files\.gitignore" />
+    <Content Include="ng-files\dist\favicon.ico" />
+    <Content Include="ng-files\dist\index.html" />
+    <Content Include="ng-files\dist\inline.bundle.js" />
+    <Content Include="ng-files\dist\main.bundle.js" />
+    <Content Include="ng-files\dist\polyfills.bundle.js" />
+    <Content Include="ng-files\dist\styles.bundle.js" />
+    <Content Include="ng-files\dist\vendor.bundle.js" />
     <Content Include="ng-files\karma.conf.js" />
     <Content Include="ng-files\protractor.conf.js" />
     <Content Include="ng-files\src\app\app.component.css" />
@@ -155,6 +162,11 @@
     <Content Include="ng-files\src\tsconfig.spec.json" />
     <Content Include="ng-files\tsconfig.json" />
     <Content Include="ng-files\tslint.json" />
+    <Content Include="ng-files\dist\inline.bundle.js.map" />
+    <Content Include="ng-files\dist\main.bundle.js.map" />
+    <Content Include="ng-files\dist\polyfills.bundle.js.map" />
+    <Content Include="ng-files\dist\styles.bundle.js.map" />
+    <Content Include="ng-files\dist\vendor.bundle.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
