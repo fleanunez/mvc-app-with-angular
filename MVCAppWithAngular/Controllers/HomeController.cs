@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MVCAppWitnAngular.Controllers
+namespace MVCAppWithAngular.Controllers
 {
     public class HomeController : Controller
     {
