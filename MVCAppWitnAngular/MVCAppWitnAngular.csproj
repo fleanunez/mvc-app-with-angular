@@ -147,6 +147,12 @@
     <Content Include="ng-files\protractor.conf.js" />
     <Content Include="ng-files\src\app\app.component.css" />
     <Content Include="ng-files\src\app\app.component.html" />
+    <Content Include="ng-files\src\app\apps-list\apps-list.component.css" />
+    <Content Include="ng-files\src\app\apps-list\apps-list.component.html" />
+    <Content Include="ng-files\src\app\home\home.component.css" />
+    <Content Include="ng-files\src\app\home\home.component.html" />
+    <Content Include="ng-files\src\app\nav\nav.component.css" />
+    <Content Include="ng-files\src\app\nav\nav.component.html" />
     <Content Include="ng-files\src\favicon.ico" />
     <Content Include="ng-files\src\index.html" />
     <Content Include="ng-files\src\styles.css" />
@@ -212,6 +218,13 @@
     <TypeScriptCompile Include="ng-files\src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="ng-files\src\app\app.component.ts" />
     <TypeScriptCompile Include="ng-files\src\app\app.module.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\app.routing.module.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\apps-list\apps-list.component.spec.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\apps-list\apps-list.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\home\home.component.spec.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\nav\nav.component.spec.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\nav\nav.component.ts" />
     <TypeScriptCompile Include="ng-files\src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ng-files\src\environments\environment.ts" />
     <TypeScriptCompile Include="ng-files\src\main.ts" />
