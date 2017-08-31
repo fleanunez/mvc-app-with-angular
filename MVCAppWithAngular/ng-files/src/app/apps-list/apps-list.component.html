@@ -1,3 +1,11 @@
-<h2>
-  List of Apps
-</h2>
+<div>
+  <h2>
+    List of Apps
+  </h2>
+  <button class="btn btn-primary" (click)="getApps()">Get Data</button>
+  <button class="btn btn-default" (click)="clearApps()">Clear</button>
+
+  <div *ngFor="let app of apps | async">
+    <strong>{{app.name}}</strong>
+  </div>
+</div>

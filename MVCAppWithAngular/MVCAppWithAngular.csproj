@@ -26,6 +26,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <Use64BitIISExpress />
     <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,12 +56,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -119,9 +130,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AppsController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -131,10 +144,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="ng-files\.gitignore" />
     <Content Include="ng-files\dist\favicon.ico" />
     <Content Include="ng-files\dist\index.html" />
@@ -151,13 +164,15 @@
     <Content Include="ng-files\src\app\apps-list\apps-list.component.html" />
     <Content Include="ng-files\src\app\home\home.component.css" />
     <Content Include="ng-files\src\app\home\home.component.html" />
+    <None Include="ng-files\src\app\loading-indicator\loading-indicator.component.scss" />
+    <Content Include="ng-files\src\app\loading-indicator\loading-indicator.component.html" />
     <Content Include="ng-files\src\app\nav\nav.component.css" />
     <Content Include="ng-files\src\app\nav\nav.component.html" />
+    <Content Include="ng-files\src\app\page-not-found\page-not-found.component.css" />
+    <Content Include="ng-files\src\app\page-not-found\page-not-found.component.html" />
     <Content Include="ng-files\src\favicon.ico" />
     <Content Include="ng-files\src\index.html" />
     <Content Include="ng-files\src\styles.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ng-files\.angular-cli.json" />
     <Content Include="ng-files\.editorconfig" />
     <Content Include="ng-files\e2e\tsconfig.e2e.json" />
@@ -173,18 +188,6 @@
     <Content Include="ng-files\dist\polyfills.bundle.js.map" />
     <Content Include="ng-files\dist\styles.bundle.js.map" />
     <Content Include="ng-files\dist\vendor.bundle.js.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -199,6 +202,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -210,7 +215,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ng-files\e2e\app.e2e-spec.ts" />
@@ -221,10 +225,20 @@
     <TypeScriptCompile Include="ng-files\src\app\app.routing.module.ts" />
     <TypeScriptCompile Include="ng-files\src\app\apps-list\apps-list.component.spec.ts" />
     <TypeScriptCompile Include="ng-files\src\app\apps-list\apps-list.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\loading-indicator\loading-indicator.component.spec.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\loading-indicator\loading-indicator.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\models\loader-state.interface.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\page-not-found\page-not-found.component.spec.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\page-not-found\page-not-found.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\services\app.service.ts" />
     <TypeScriptCompile Include="ng-files\src\app\home\home.component.spec.ts" />
     <TypeScriptCompile Include="ng-files\src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\models\app.model.ts" />
     <TypeScriptCompile Include="ng-files\src\app\nav\nav.component.spec.ts" />
     <TypeScriptCompile Include="ng-files\src\app\nav\nav.component.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\services\loader-notifier.service.spec.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\services\loader-notifier.service.ts" />
+    <TypeScriptCompile Include="ng-files\src\app\utils\array-utils.ts" />
     <TypeScriptCompile Include="ng-files\src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ng-files\src\environments\environment.ts" />
     <TypeScriptCompile Include="ng-files\src\main.ts" />
